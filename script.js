@@ -4,8 +4,9 @@
 const submitBtn = document.querySelector(".submit");
 const clearBtn = document.querySelector(".clear");
 const p = document.querySelector(".p");
+let inputField = document.querySelector(".text");
 submitBtn.addEventListener("click", function () {
-  var listItem = document.querySelector(".text").value;
+  var listItem = inputField.value;
   if (listItem == "") {
     alert("Please enter a task.");
   } else {
