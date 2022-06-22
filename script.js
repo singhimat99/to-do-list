@@ -3,8 +3,9 @@
 // takes input from user and once user clicks submit, it adds to the list
 const submitBtn = document.querySelector(".submit");
 const clearBtn = document.querySelector(".clear");
-const p = document.querySelector(".p");
+const listContainer = document.querySelector(".listContainer");
 let inputField = document.querySelector(".text");
+
 submitBtn.addEventListener("click", function () {
   var listItem = inputField.value;
   if (listItem == "") {
@@ -12,30 +13,25 @@ submitBtn.addEventListener("click", function () {
   } else {
     // create new element for current list item
     const tag = document.createElement("p");
-    tag.setAttribute("class", "item");
-    tag.textContent = listItem + " ";
-    // const text = document.createTextNode(listItem + " "); // creating text node
+    tag.classList.add("item");
+    tag.innerHTML = listItem + " ";
 
     // create button element
     const xBtn = document.createElement("button");
-    // xBtn.setAttribute("class", "delete");
-    // xBtn.classList.add('delete');
     xBtn.innerHTML = "X";
 
-    // append text to new item + button
-    // tag.appendChild(text);
+    // append button to tag
     tag.appendChild(xBtn);
 
-    // select div and append new tag to it
-    p.appendChild(tag);
+    // append tag to div
+    listContainer.appendChild(tag);
 
     // set value of textbox to ''
     document.querySelector(".text").value = "";
 
-    //
+    //delete function
     xBtn.addEventListener("click", function () {
-      p.removeChild(tag);
-      // xBtn.parentElement.style.display = "none";
+      listContainer.removeChild(tag);
     });
   }
 });
@@ -43,8 +39,6 @@ submitBtn.addEventListener("click", function () {
 clearBtn.addEventListener("click", function () {
   const list = document.querySelectorAll(".item");
   for (let i = 0; i < list.length; i++) {
-    // sets display of each parent for the xbtn which is list item to none
-    // list[i].parentElement.style.display = "none";
     list[i].parentElement.removeChild(list[i]);
   }
 });
