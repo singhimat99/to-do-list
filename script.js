@@ -5,12 +5,12 @@ const submitBtn = document.querySelector(".submit");
 const clearBtn = document.querySelector(".clear");
 const listContainer = document.querySelector(".listContainer");
 let inputField = document.querySelector(".text");
-
-submitBtn.addEventListener("click", function () {
+const addListItem = function (e) {
   var listItem = inputField.value;
+  if (e.key === "Enter") console.log("working");
   if (listItem == "") {
     alert("Please enter a task.");
-  } else {
+  } else if (e.key === "Enter" || true) {
     // create new element for current list item
     const tag = document.createElement("p");
     tag.classList.add("item");
@@ -33,6 +33,14 @@ submitBtn.addEventListener("click", function () {
     xBtn.addEventListener("click", function () {
       listContainer.removeChild(tag);
     });
+  }
+};
+// submit button click
+submitBtn.addEventListener("click", addListItem);
+// enter key trigger submt button click
+inputField.addEventListener("keydown", function (enter) {
+  if (enter.key === "Enter") {
+    document.querySelector(".submit").click();
   }
 });
 
